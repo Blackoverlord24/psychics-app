@@ -1,0 +1,27 @@
+{
+  "name": "psychic",
+  "version": "1.0.0",
+  "description": "Test app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "webpack",
+    "js"
+  ],
+  "author": "Ruslan Zakharov",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.0",
+    "express-session": "^1.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
