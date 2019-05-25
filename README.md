@@ -5,7 +5,7 @@
 ```
 npm install - for loading dependencies for server
 npm install in src/client dir for loading dependencies for client
-npm buid in src/client dir for compiles app
+npm buid for compiles app
 ```
 
 ## Compiles and hot-reloads for production

@@ -10,7 +10,11 @@ app.use(bodyParser.json())
 app.use(require('cors')())
 app.use(session({
   secret: 'keyboard cat',
-  cookie: {maxAge: 60000 }
+  resave: false,
+  saveUninitialized: true,
+  //Life time 1 hour
+  cookie: {maxAge: 60 * 1000 * 60},
+  answers: []
 }));
 app.use(express.static(__dirname+'/client/dist'));
 

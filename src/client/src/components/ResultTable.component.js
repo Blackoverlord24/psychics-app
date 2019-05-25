@@ -1,5 +1,5 @@
 import Component from "../core/Component"
-import LocalStorageService from '../services/localStorage.service'
+import apiService from '../services/api.service'
 
 export default class ResultTableComponent extends Component {
   constructor(el) {
@@ -19,18 +19,19 @@ export default class ResultTableComponent extends Component {
 
     this.$el
       .querySelector('tbody')
-      .insertAdjacentHTML('afterBegin',  `<tr>${htmlTemp}<td>?</td></tr>`)
+      .insertAdjacentHTML('afterBegin',  `<tr>${htmlTemp}</tr>`)
   }
 
-  renderResults() {
+  async renderResults() {
     this.$body.innerHTML = ''
-    renderBody.call(this)
-    renderFooter.call(this)
+    await renderBody.call(this)
+    await renderFooter.call(this)
   }
 }
 
-function renderBody() {
-  const results = LocalStorageService.getItem('answers') || []
+async function renderBody() {
+  const results = await apiService.getAnswersHistory()
+
   let htmlTemp = ''
   results.forEach(result => {
     for (let key in result) {
@@ -41,16 +42,10 @@ function renderBody() {
   })
 }
 
-function renderFooter() {
-  let psychicsRating = LocalStorageService.getItem('psychics')
-
-  if (!psychicsRating) {
-    psychicsRating = [{1: 0, 2: 0, 3: 0, 4: 0, 5: 0}]
-    LocalStorageService.setItem('psychics', psychicsRating)
-  }
+async function renderFooter() {
+  const psychicsRating = await apiService.getPsychicsRate()
 
   let  htmlTemp = ''
-
   for (let i = 1; i <6; i++) {
     htmlTemp += `<td>${psychicsRating[0][i]}</td>`
   }
