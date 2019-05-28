@@ -1,7 +1,7 @@
 const path = require('path')
 
 async function index (request, response) {
-  response.sendFile(path.join(__dirname+'/../client/dist/index.html'));
+  response.sendFile(path.join(__dirname+'/../client/dist/index.html'))
 }
 
 function historyOfAnswers(request, response) {
@@ -27,8 +27,14 @@ function updatePsychicsRate(request, response) {
   request.session.answers[lastAnswersIndex]['result'] = answerNumber
 
   for(let key in lastAnswers) {
+    //Add psychics rate in he or she give a correct number or subtract if incorrect
     if(lastAnswers[key] === parseInt(answerNumber)) {
       request.session.psychicsRate[0][key]++
+    } else {
+      //0 is the lowest rating so we don't take negative numbers
+      if(request.session.psychicsRate[0][key]) {
+        request.session.psychicsRate[0][key]--
+      }
     }
   }
 

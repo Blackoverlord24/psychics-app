@@ -49,5 +49,5 @@ async function renderFooter() {
   for (let i = 1; i <6; i++) {
     htmlTemp += `<td>${psychicsRating[0][i]}</td>`
   }
-  this.$body.innerHTML += `<tr>${htmlTemp}<td><b>Total result</b></td></tr>`
+  this.$body.innerHTML += `<tr>${htmlTemp}<td><b>Authenticity of psychics</b></td></tr>`
 }
